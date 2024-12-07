@@ -1,7 +1,7 @@
 import 'package:education_center/src/core/widgets/custom_app_bar_widget.dart';
 import 'package:education_center/src/core/widgets/main_button.dart';
+import 'package:education_center/src/feature/admin/view_model/admin_vm.dart';
 import 'package:education_center/src/feature/auth/view/widgets/login_input_widget.dart';
-import 'package:education_center/src/feature/home/view_model/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +14,7 @@ class AddTeacherPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vm = ref.watch(homeVM);
+    final vm = ref.watch(adminVM);
     return Scaffold(
       appBar: const CustomAppBarWidget(title: "Add new teacher", canPop: true),
       body: Padding(

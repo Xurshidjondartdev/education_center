@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final homeVM = ChangeNotifierProvider.autoDispose<HomeVM>((ref) {
-  return HomeVM();
+final adminVM = ChangeNotifierProvider.autoDispose<AdminVM>((ref) {
+  return AdminVM();
 });
 
-class HomeVM extends ChangeNotifier {
+class AdminVM extends ChangeNotifier {
   TextEditingController addTeacherNameC = TextEditingController();
   TextEditingController addTeacherLastNameC = TextEditingController();
   TextEditingController addTeacherSubjectC = TextEditingController();
