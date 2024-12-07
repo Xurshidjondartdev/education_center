@@ -15,8 +15,8 @@ class TeacherStudentsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final studentsVm = ref.watch(teacherVm);
     return Scaffold(
-      appBar:
-          const CustomAppBarWidget(title: "View all Students Teacher", canPop: true),
+      appBar: const CustomAppBarWidget(
+          title: "View all Students Teacher", canPop: true),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 8),
         child: Column(
@@ -107,7 +107,8 @@ class TeacherStudentsPage extends ConsumerWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              RouterConfigService.router.go(AppRouteNames.addStudentsPage);
+              RouterConfigService.router.go(
+                  "${AppRouteNames.teacherGroupPage}${AppRouteNames.teacherstudentsPage}${AppRouteNames.addStudentsPage}");
             },
             child: const Icon(Icons.person_add_sharp),
           ),

@@ -1,5 +1,5 @@
 import 'package:education_center/src/core/widgets/custom_app_bar_widget.dart';
-import 'package:education_center/src/feature/admin/view_model/admin_vm.dart';
+import 'package:education_center/src/feature/teacher/view_model/teacher_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,14 +8,15 @@ import '../../../../core/routes/app_route_names.dart';
 import '../../../../core/routes/router_config.dart';
 import '../../../../core/widgets/group_widget.dart';
 
-class AdminGroupPage extends ConsumerWidget {
-  const AdminGroupPage({super.key});
+class TeacherGroupPage extends ConsumerWidget {
+  const TeacherGroupPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final groupsVm = ref.watch(adminVM);
+    final groupsVm = ref.watch(teacherVm);
     return Scaffold(
-      appBar: const CustomAppBarWidget(title: "View All Groups", canPop: true),
+      appBar: const CustomAppBarWidget(
+          title: "Teacher View All Groups", canPop: true),
       body: Padding(
         padding: REdgeInsets.all(10.0),
         child: SizedBox(
@@ -29,7 +30,7 @@ class AdminGroupPage extends ConsumerWidget {
                 position: group['position']!,
                 onActionPressed: () {
                   RouterConfigService.router.go(
-                      "${AppRouteNames.adminGroupPage}${AppRouteNames.adminStudentsPage}");
+                      "${AppRouteNames.teacherGroupPage}${AppRouteNames.teacherstudentsPage}");
                 },
                 onCardPressed: () {},
                 onEditPressed: () {},
@@ -40,14 +41,6 @@ class AdminGroupPage extends ConsumerWidget {
             itemCount: groupsVm.groups.length,
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          RouterConfigService.router.go(
-            "${AppRouteNames.adminGroupPage}${AppRouteNames.addGroups}",
-          );
-        },
-        child: const Icon(Icons.group_add),
       ),
     );
   }

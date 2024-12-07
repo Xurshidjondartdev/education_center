@@ -42,7 +42,7 @@ class AddGroupsPage extends ConsumerWidget {
               MainButton(
                   text: "Add group",
                   onTap: () {
-                    RouterConfigService.router.go(AppRouteNames.addStudentsPage);
+                    RouterConfigService.router.go(AppRouteNames.adminGroupPage);
                   })
             ],
           ),

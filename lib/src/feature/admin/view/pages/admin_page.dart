@@ -17,8 +17,8 @@ class AdminPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final adminVm = ref.watch(adminVM);
     return Scaffold(
-      appBar: const CustomAppBarWidget(
-          title: "Education Center", canPop: false),
+      appBar:
+          const CustomAppBarWidget(title: "Education Center", canPop: false),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: ListView.separated(
@@ -31,20 +31,15 @@ class AdminPage extends ConsumerWidget {
               position: user['position']!,
               onActionPressed: () {
                 log("$user darni boshladi");
-                RouterConfigService.router
-                    .go("${AppRouteNames.admin}/${AppRouteNames.adminGroupPage}");
+                RouterConfigService.router.go(
+                    "${AppRouteNames.admin}/${AppRouteNames.adminGroupPage}");
               },
-              onCardPressed: () {
-                log("card present");
-              },
+              onCardPressed: () {},
               onEditPressed: () {
-                log("edit");
                 RouterConfigService.router.go(AppRouteNames.addTeacher);
                 Navigator.pop(context);
               },
-              onDeleteConfirmed: () {
-                log("delete");
-              },
+              onDeleteConfirmed: () {},
             );
           },
         ),

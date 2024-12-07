@@ -14,8 +14,8 @@ class AdminStudentPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final studentsVm = ref.watch(teacherVm);
     return Scaffold(
-      appBar:
-          const CustomAppBarWidget(title: "View all Students Admin", canPop: true),
+      appBar: const CustomAppBarWidget(
+          title: "View all Students Admin", canPop: true),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 8),
         child: Column(
@@ -60,7 +60,9 @@ class AdminStudentPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          RouterConfigService.router.go(AppRouteNames.addStudentsPage);
+          RouterConfigService.router.go(
+            "${AppRouteNames.adminGroupPage}${AppRouteNames.adminStudentsPage}${AppRouteNames.addStudentsPage}",
+          );
         },
         child: const Icon(Icons.person_add_sharp),
       ),

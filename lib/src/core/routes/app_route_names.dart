@@ -17,7 +17,8 @@ final class AppRouteNames {
   static const String addStudentsPage = "/addStudentsPage";
 
   // Teacher
-  static const String teacherstudentsPage = "/studentsPage";
+  static const String teacherGroupPage = "/teacherGroupPage";
+  static const String teacherstudentsPage = "/teacherstudentsPage";
 
 
 }
