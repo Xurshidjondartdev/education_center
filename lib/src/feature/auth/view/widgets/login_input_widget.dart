@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/style/app_colors.dart';
@@ -6,8 +5,9 @@ import '../../../../core/style/app_colors.dart';
 class LoginInputWidget extends StatefulWidget {
   final String hintText;
   final String? validatorText;
-  final TextEditingController textEditingController;
+  final TextEditingController? textEditingController;
   final bool isPassword;
+  final TextInputType? keyboardType;
 
   const LoginInputWidget({
     super.key,
@@ -15,6 +15,7 @@ class LoginInputWidget extends StatefulWidget {
     required this.textEditingController,
     this.validatorText,
     this.isPassword = false,
+    this.keyboardType,
   });
 
   @override
@@ -28,13 +29,13 @@ class _LoginInputWidgetState extends State<LoginInputWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
+        keyboardType: widget.keyboardType,
         controller: widget.textEditingController,
         obscureText: widget.isPassword ? _obscureText : false,
         onTapOutside: (event) {
           FocusScope.of(context).unfocus();
         },
         onEditingComplete: () {
-          log(widget.textEditingController.text);
           FocusScope.of(context).nextFocus();
         },
         validator: (value) {
