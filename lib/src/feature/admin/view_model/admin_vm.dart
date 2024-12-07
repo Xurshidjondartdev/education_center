@@ -10,6 +10,34 @@ class AdminVM extends ChangeNotifier {
   TextEditingController addTeacherLastNameC = TextEditingController();
   TextEditingController addTeacherSubjectC = TextEditingController();
 
+
+  final List<Map<String, String>> groups = [
+    {
+      'name': 'Biology',
+      'position': 'Full time',
+    },
+    {
+      'name': 'Character',
+      'position': 'Half time',
+    },
+    {
+      'name': 'History',
+      'position': 'Full time',
+    },
+    {
+      'name': 'Chemistry',
+      'position': 'Full time',
+    },
+    {
+      'name': 'Mathematics',
+      'position': 'Full time',
+    },
+    {
+      'name': 'Political',
+      'position': 'Full time',
+    },
+  ];
+
   final List<Map<String, String>> users = [
     {
       'name': 'John Nick',

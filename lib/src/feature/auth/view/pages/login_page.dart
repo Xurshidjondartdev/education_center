@@ -51,7 +51,7 @@ class LoginPage extends ConsumerWidget {
                 text: "Continue",
                 onTap: () {
                   if (authvm.loginSuccess()) {
-                    RouterConfigService.router.go(AppRouteNames.home);
+                    RouterConfigService.router.go(AppRouteNames.admin);
                   } else {
                     log("message");
                   }

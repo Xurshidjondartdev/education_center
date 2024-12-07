@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GroupWidget extends StatelessWidget {
   final String name;
@@ -32,8 +33,8 @@ class GroupWidget extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              width: 200, // Containerning kengligini belgilash
-              padding: const EdgeInsets.all(16),
+              width: 200.h,
+              padding: REdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
@@ -42,41 +43,41 @@ class GroupWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CircleAvatar(
-                    radius: 40,
+                    radius: 40.r,
                     backgroundColor: Colors.blue[100],
                     child: Text(
                       name.substring(0, 1),
-                      style: const TextStyle(
-                        fontSize: 36,
+                      style: TextStyle(
+                        fontSize: 36.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   Text(
                     name,
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style: TextStyle(
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   Text(
                     position,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       color: Colors.grey[600],
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   ElevatedButton(
                     onPressed: onActionPressed,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.withOpacity(0.8),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                     ),
                     child: const Text(
@@ -88,15 +89,15 @@ class GroupWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 8,
-              right: 8,
+              top: 8.w,
+              right: 8.w,
               child: IconButton(
                 onPressed: () {
                   _showMoreOptions(context);
                 },
                 icon: Icon(
                   Icons.more_vert,
-                  size: 24,
+                  size: 24.sp,
                   color: Colors.grey[700],
                 ),
               ),

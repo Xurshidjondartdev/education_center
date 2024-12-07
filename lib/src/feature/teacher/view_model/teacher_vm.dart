@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final studentsVM = ChangeNotifierProvider.autoDispose<StudentsVM>((ref) {
-  return StudentsVM();
+final teacherVm = ChangeNotifierProvider.autoDispose<TeacherVM>((ref) {
+  return TeacherVM();
 });
 
-class StudentsVM extends ChangeNotifier {
+class TeacherVM extends ChangeNotifier {
   TextEditingController studentsName = TextEditingController();
   TextEditingController studentsLastName = TextEditingController();
   TextEditingController studentsGmail = TextEditingController();

@@ -1,21 +1,21 @@
 import 'package:education_center/src/core/widgets/custom_app_bar_widget.dart';
-import 'package:education_center/src/feature/groups/view_model/group_vm.dart';
+import 'package:education_center/src/feature/admin/view_model/admin_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/routes/app_route_names.dart';
 import '../../../../core/routes/router_config.dart';
-import '../widgets/group_widget.dart';
+import '../../../../core/widgets/group_widget.dart';
 
-class GroupPage extends ConsumerWidget {
-  const GroupPage({super.key});
+class AdminGroupPage extends ConsumerWidget {
+  const AdminGroupPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final groupsVm = ref.watch(groupVM);
+    final groupsVm = ref.watch(adminVM);
     return Scaffold(
-      appBar: const CustomAppBarWidget(title: "View all groups", canPop: true),
+      appBar: const CustomAppBarWidget(title: "View All Groups", canPop: true),
       body: Padding(
         padding: REdgeInsets.all(10.0),
         child: SizedBox(
@@ -28,7 +28,8 @@ class GroupPage extends ConsumerWidget {
                 name: group["name"]!,
                 position: group['position']!,
                 onActionPressed: () {
-                  RouterConfigService.router.go(AppRouteNames.studentsPage);
+                  RouterConfigService.router
+                      .go(AppRouteNames.adminStudentsPage);
                 },
                 onCardPressed: () {},
                 onEditPressed: () {},
@@ -43,7 +44,7 @@ class GroupPage extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           RouterConfigService.router.go(
-            "${AppRouteNames.home}/${AppRouteNames.addGroups}",
+            "${AppRouteNames.admin}/${AppRouteNames.addGroups}",
           );
         },
         child: const Icon(Icons.group_add),

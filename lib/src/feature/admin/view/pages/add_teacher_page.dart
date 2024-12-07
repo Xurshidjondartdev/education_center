@@ -40,7 +40,7 @@ class AddTeacherPage extends ConsumerWidget {
               MainButton(
                 text: "Add teacher",
                 onTap: () {
-                  RouterConfigService.router.go(AppRouteNames.home);
+                  RouterConfigService.router.go(AppRouteNames.admin);
                 },
               )
             ],

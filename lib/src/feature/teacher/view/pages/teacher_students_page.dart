@@ -1,5 +1,5 @@
 import 'package:education_center/src/core/widgets/main_button.dart';
-import 'package:education_center/src/feature/students/view_model/students_vm.dart';
+import 'package:education_center/src/feature/teacher/view_model/teacher_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,15 +8,15 @@ import '../../../../core/routes/app_route_names.dart';
 import '../../../../core/routes/router_config.dart';
 import '../../../../core/widgets/custom_app_bar_widget.dart';
 
-class StudentsPage extends ConsumerWidget {
-  const StudentsPage({super.key});
+class TeacherStudentsPage extends ConsumerWidget {
+  const TeacherStudentsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final studentsVm = ref.watch(studentsVM);
+    final studentsVm = ref.watch(teacherVm);
     return Scaffold(
       appBar:
-          const CustomAppBarWidget(title: "View all Students", canPop: true),
+          const CustomAppBarWidget(title: "View all Students Teacher", canPop: true),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 8),
         child: Column(
@@ -80,13 +80,11 @@ class StudentsPage extends ConsumerWidget {
                                   Navigator.pop(context);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Colors.red, // Tugma foni qizil rangda
-                                  foregroundColor:
-                                      Colors.white, // Matn rangi oq
+                                  backgroundColor: Colors.red,
+                                  foregroundColor: Colors.white,
                                   textStyle: const TextStyle(
-                                      fontWeight: FontWeight
-                                          .bold), // Matnni qalin qilish
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 child: const Text("Ha"),
                               ),
@@ -109,7 +107,7 @@ class StudentsPage extends ConsumerWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-                 RouterConfigService.router.go(AppRouteNames.addStudentsPage);
+              RouterConfigService.router.go(AppRouteNames.addStudentsPage);
             },
             child: const Icon(Icons.person_add_sharp),
           ),

@@ -1,15 +1,13 @@
-import "package:education_center/src/feature/admin/view/pages/admin_student_page.dart";
 import "package:education_center/src/feature/auth/view/pages/login_page.dart";
 import "package:education_center/src/feature/admin/view/pages/add_groups_page.dart";
 import "package:education_center/src/feature/admin/view/pages/add_teacher_page.dart";
 import "package:education_center/src/feature/admin/view/pages/add_students_page.dart";
 import "package:education_center/src/feature/admin/view/pages/admin_page.dart";
 import "package:education_center/src/feature/splash/splash.dart";
-import "package:education_center/src/feature/students/view/pages/students_page.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 
-import "../../feature/groups/view/pages/group_page.dart";
+import "../../feature/admin/view/pages/admin_group_page.dart";
 import "app_route_names.dart";
 
 GlobalKey<NavigatorState> parentNavigatorKey = GlobalKey<NavigatorState>();
@@ -58,7 +56,7 @@ final class RouterConfigService {
       ),
       //home
       GoRoute(
-        path: AppRouteNames.home,
+        path: AppRouteNames.admin,
         builder: (context, state) => const AdminPage(),
         routes: [
           GoRoute(
@@ -66,23 +64,19 @@ final class RouterConfigService {
             builder: (context, state) => const AddTeacherPage(),
           ),
           GoRoute(
-            path: AppRouteNames.viewGroups,
-            builder: (context, state) => const GroupPage(),
-          ),
-          GoRoute(
             path: AppRouteNames.addGroups,
             builder: (context, state) => const AddGroupsPage(),
           ),
           GoRoute(
             path: AppRouteNames.addStudentsPage,
-            builder: (context, state) => const AdminStudentPage(),
+            builder: (context, state) => const AddStudentsPage(),
           ),
           GoRoute(
-            path: AppRouteNames.studentsPage,
-            builder: (context, state) => const StudentsPage(),
+            path: AppRouteNames.adminGroupPage,
+            builder: (context, state) => const AdminGroupPage(),
           ),
-          GoRoute(
-            path: AppRouteNames.addStudentsPage,
+            GoRoute(
+            path: AppRouteNames.adminStudentsPage,
             builder: (context, state) => const AddStudentsPage(),
           ),
         ],

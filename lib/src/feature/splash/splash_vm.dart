@@ -27,7 +27,7 @@ class SplashViewModel extends ChangeNotifier {
         await Future.delayed(const Duration(seconds: 3));
         String? token = await AppStorage.$read(key: StorageKey.token);
         if (token != null) {
-          RouterConfigService.router.go(AppRouteNames.home);
+          RouterConfigService.router.go(AppRouteNames.admin);
           log("{token: $token}");
         } else {
           RouterConfigService.router.go(AppRouteNames.login);

@@ -1,7 +1,7 @@
 import 'package:education_center/src/core/widgets/custom_app_bar_widget.dart';
 import 'package:education_center/src/core/widgets/main_button.dart';
+import 'package:education_center/src/feature/admin/view_model/admin_vm.dart';
 import 'package:education_center/src/feature/auth/view/widgets/login_input_widget.dart';
-import 'package:education_center/src/feature/groups/view_model/group_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +16,7 @@ class AddGroupsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final groupVm = ref.watch(groupVM);
+    final groupVm = ref.watch(adminVM);
     return Scaffold(
       appBar: const CustomAppBarWidget(title: "Add new group", canPop: true),
       body: Padding(
@@ -42,7 +42,7 @@ class AddGroupsPage extends ConsumerWidget {
               MainButton(
                   text: "Add group",
                   onTap: () {
-                    RouterConfigService.router.go(AppRouteNames.viewGroups);
+                    RouterConfigService.router.go(AppRouteNames.addStudentsPage);
                   })
             ],
           ),

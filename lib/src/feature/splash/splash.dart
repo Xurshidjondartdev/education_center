@@ -54,7 +54,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       if (mounted) {
         log("$token   is 2");
 
-        context.go(AppRouteNames.home);
+        context.go(AppRouteNames.admin);
       }
     }
   }

@@ -6,16 +6,18 @@ final class AppRouteNames {
   // Auth
   static const String login = "/login";
 
-  // Main
-  static const String home = "/";
-
+  // Admin
+  static const String admin = "/";
   static const String addTeacher = "/addTeacher";
   static const String addGroups = "/addGroups";
-  static const String viewGroups = "/viewGroups";
+  static const String adminGroupPage = "/adminGroupPage";
   static const String adminStudentsPage = "/adminStudentsPage";
-  static const String studentsPage = "/studentsPage";
 
+  // All 
   static const String addStudentsPage = "/addStudentsPage";
+
+  // Teacher
+  static const String teacherstudentsPage = "/studentsPage";
 
 
 }

@@ -32,7 +32,7 @@ class AdminPage extends ConsumerWidget {
               onActionPressed: () {
                 log("$user darni boshladi");
                 RouterConfigService.router
-                    .go("${AppRouteNames.home}/${AppRouteNames.viewGroups}");
+                    .go("${AppRouteNames.admin}/${AppRouteNames.adminGroupPage}");
               },
               onCardPressed: () {
                 log("card present");
@@ -52,7 +52,7 @@ class AdminPage extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           RouterConfigService.router
-              .go("${AppRouteNames.home}/${AppRouteNames.addTeacher}");
+              .go("${AppRouteNames.admin}/${AppRouteNames.addTeacher}");
         },
         child: const Icon(Icons.person_add),
       ),

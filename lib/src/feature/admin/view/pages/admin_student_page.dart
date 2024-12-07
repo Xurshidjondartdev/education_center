@@ -1,4 +1,4 @@
-import 'package:education_center/src/feature/students/view_model/students_vm.dart';
+import 'package:education_center/src/feature/teacher/view_model/teacher_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,10 +12,10 @@ class AdminStudentPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final studentsVm = ref.watch(studentsVM);
+    final studentsVm = ref.watch(teacherVm);
     return Scaffold(
       appBar:
-          const CustomAppBarWidget(title: "View all Students", canPop: true),
+          const CustomAppBarWidget(title: "View all Students Admin", canPop: true),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 8),
         child: Column(
