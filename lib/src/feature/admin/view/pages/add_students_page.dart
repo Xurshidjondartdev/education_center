@@ -7,7 +7,7 @@ class AddStudentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBarWidget(title: "Teacher add new students", canPop: true),
+      appBar: CustomAppBarWidget(title: "Admin add new students", canPop: true),
       body: Center(
         child: Text(
           'This is the Add Students page',

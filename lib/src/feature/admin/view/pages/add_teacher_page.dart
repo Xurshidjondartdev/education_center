@@ -38,10 +38,11 @@ class AddTeacherPage extends ConsumerWidget {
               ),
               const Spacer(),
               MainButton(
-                  text: "Add teacher",
-                  onTap: () {
-                    RouterConfigService.router.go(AppRouteNames.home);
-                  })
+                text: "Add teacher",
+                onTap: () {
+                  RouterConfigService.router.go(AppRouteNames.home);
+                },
+              )
             ],
           ),
         ),

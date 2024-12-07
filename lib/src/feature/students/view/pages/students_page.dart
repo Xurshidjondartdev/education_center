@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/routes/app_route_names.dart';
+import '../../../../core/routes/router_config.dart';
 import '../../../../core/widgets/custom_app_bar_widget.dart';
 
 class StudentsPage extends ConsumerWidget {
@@ -106,7 +108,9 @@ class StudentsPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+                 RouterConfigService.router.go(AppRouteNames.addStudentsPage);
+            },
             child: const Icon(Icons.person_add_sharp),
           ),
           SizedBox(height: 70.h)
