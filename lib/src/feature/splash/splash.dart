@@ -1,5 +1,3 @@
-import "dart:developer";
-
 import "package:education_center/src/core/storage/app_storage.dart";
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
@@ -42,18 +40,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     // Tokenni tekshirish va navigatsiya qilish
     if (token == null) {
-      log("$token   is null");
       if (mounted) {
-        log("$token   is null 2");
-
         context.go(AppRouteNames.login);
       }
     } else {
-      log("$token is");
-
       if (mounted) {
-        log("$token   is 2");
-
         context.go(AppRouteNames.admin);
       }
     }

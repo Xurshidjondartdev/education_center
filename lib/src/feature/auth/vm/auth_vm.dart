@@ -21,8 +21,10 @@ class AuthVM extends ChangeNotifier {
       if (data == null) {
         errorMessage = "Internet bilan muammo yuz berdi, qayta urinib ko'ring.";
         return false;
+      } else {
+        errorMessage = "Good";
+        return true;
       }
-      return false;
     } catch (e) {
       return false;
     }

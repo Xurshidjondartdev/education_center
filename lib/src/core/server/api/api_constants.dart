@@ -1,9 +1,9 @@
 final class ApiConst {
   const ApiConst._();
 
-  static const Duration connectionTimeout = Duration(minutes: 1);
-  static const Duration sendTimeout = Duration(minutes: 1);
-  static const Duration receiveTimeout = Duration(minutes: 1);
+  static const Duration connectionTimeout = Duration(minutes: 10);
+  static const Duration sendTimeout = Duration(minutes: 10);
+  static const Duration receiveTimeout = Duration(minutes: 10);
 
   static const String baseUrl = "http://localhost:8080";
   static const String version = "/api/v1";

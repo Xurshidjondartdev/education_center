@@ -43,7 +43,7 @@ final class RouterConfigService {
   const RouterConfigService._();
 
   static final GoRouter router = GoRouter(
-    debugLogDiagnostics: true,
+    // debugLogDiagnostics: true,
     navigatorKey: parentNavigatorKey,
     initialLocation: AppRouteNames.splash,
     routes: <RouteBase>[

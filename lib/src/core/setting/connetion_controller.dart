@@ -19,7 +19,7 @@ class ConnectionController with ChangeNotifier {
 
   void listenDeviceConnectionEnable() {
     // Check connectivity every 5 seconds
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
+    _timer = Timer.periodic(const Duration(seconds: 15), (timer) async {
       isDeviceConnectionEnable = await checkInternetConnection();
       notifyListeners();
       log(isDeviceConnectionEnable

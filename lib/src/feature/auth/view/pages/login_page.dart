@@ -44,12 +44,7 @@ class LoginPage extends ConsumerWidget {
                 isPassword: true,
               ),
               const Spacer(),
-              MainButton(
-                text: "Continue",
-                onTap: () {
-                  authvm.login();
-                },
-              ),
+              MainButton(text: "Continue", onTap: () async {}),
             ],
           ),
         ),
