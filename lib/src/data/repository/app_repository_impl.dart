@@ -1,29 +1,35 @@
+import "dart:developer";
+
 import "package:dio/dio.dart";
-import "package:education_center/src/core/server/api/api.dart";
 import "package:education_center/src/core/server/api/api_constants.dart";
-import "package:flutter/material.dart";
+import "package:education_center/src/core/server/api/network_service.dart";
+import "package:education_center/src/data/model/login_model.dart";
 
 import "app_repository.dart";
 
 class AppRepositoryImpl implements AppRepo {
   @override
-  Future<String?> login(
+  Future<LoginModel?> login(
       {required String phone, required String password}) async {
     try {
-      final data = await ApiService.post(
+      final data = await NetworkService.post(
         ApiConst.apiLogin,
         {
           "phone": phone,
           "password": password,
         },
       );
-      return data;
+      if (data != null) {
+        final LoginModel loginModel = loginModelFromJson(data);
+        return loginModel;
+      } else {
+        return null;
+      }
     } on DioException catch (e) {
-      debugPrint("Server error: ${e.response?.data ?? e.message}");
-      return "Server error: ${e.response?.statusCode ?? 'Unknown status code'}";
+      log(" $e");
     } catch (e) {
-      debugPrint("Unexpected error: $e");
-      return "Unexpected error: $e";
+      log(" $e");
     }
+    return null;
   }
 }

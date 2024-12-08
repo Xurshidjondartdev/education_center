@@ -42,50 +42,10 @@ class LoginPage extends ConsumerWidget {
               MainButton(
                 text: "Continue",
                 onTap: () async {
-                  authvm.login();
-                  // authvm.testApiLogin();
-                  // final isSuccessLogin = await authvm.login();
-                  // if (isSuccessLogin == true) {
-                  //   log("login qildi");
-                  // } else {
-                  //   log("login qilinmadi");
-                  // }
-
-                  //   var headers = {'Content-Type': 'application/json'};
-                  //   var request = http.Request(
-                  //       'POST',
-                  //       Uri.parse(
-                  //           'http://192.168.222.251:8080/api/v1/auth/login'));
-                  //   request.body = json.encode(
-                  //       {"phone": "+998939468430", "password": "admin1234"});
-                  //   request.headers.addAll(headers);
-                  //   log("message 1");
-                  //   http.StreamedResponse response = await request.send();
-                  //   log("message 2");
-                  //   if (response.statusCode == 200 ||
-                  //       response.statusCode == 201) {
-                  //     log(await response.stream.bytesToString());
-                  //   } else {
-                  //     log("else 200 201 emas");
-                  //   }
-
-                  // var headers = {'Content-Type': 'application/json'};
-                  // var data = json.encode(
-                  //     {"phone": "+998939468432", "password": "string0"});
-                  // var dio = Dio();
-                  // var response = await dio.request(
-                  //   'http://192.168.222.251:8080/api/v1/auth/login',
-                  //   options: Options(
-                  //     method: 'POST',
-                  //     headers: headers,
-                  //   ),
-                  //   data: data,
-                  // );
-                  // if (response.statusCode == 200) {
-                  //   print(json.encode(response.data));
-                  // } else {
-                  //   print(response.statusMessage);
-                  // }
+                  authvm.login(
+                    authvm.passwordC.text.trim(),
+                    authvm.passwordC.text.trim(),
+                  );
                 },
               ),
             ],
