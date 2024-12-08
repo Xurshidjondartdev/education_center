@@ -45,7 +45,7 @@ final class RouterConfigService {
   static final GoRouter router = GoRouter(
     // debugLogDiagnostics: true,
     navigatorKey: parentNavigatorKey,
-    initialLocation: AppRouteNames.splash,
+    initialLocation: AppRouteNames.login,
     routes: <RouteBase>[
       // SPLASH
       GoRoute(

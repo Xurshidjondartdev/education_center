@@ -8,12 +8,12 @@ import "app_repository.dart";
 class AppRepositoryImpl implements AppRepo {
   @override
   Future<String?> login(
-      {required String login, required String password}) async {
+      {required String phone, required String password}) async {
     try {
       final data = await ApiService.post(
         ApiConst.apiLogin,
         {
-          "phone": login,
+          "phone": phone,
           "password": password,
         },
       );

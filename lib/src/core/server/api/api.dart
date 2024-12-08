@@ -26,7 +26,7 @@ class ApiService {
         connectTimeout: ApiConst.connectionTimeout,
         receiveTimeout: ApiConst.sendTimeout,
         sendTimeout: ApiConst.sendTimeout,
-        validateStatus: (status) => status != null && status < 205,
+        validateStatus: (status) => status != null && status < 500,
       ),
     );
 
@@ -44,8 +44,7 @@ class ApiService {
     // Deprecated bo'lgan onHttpClientCreate o'rniga createHttpClient'dan foydalanamiz
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
       final client = HttpClient();
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+      client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
       return client;
     };
 
@@ -54,10 +53,8 @@ class ApiService {
 
   static Future<Map<String, String>> getHeaders({bool isUpload = false}) async {
     final headers = <String, String>{
-      "Content-type":
-          isUpload ? "multipart/form-data" : "application/json; charset=UTF-8",
-      "Accept":
-          isUpload ? "multipart/form-data" : "application/json; charset=UTF-8",
+      "Content-type": isUpload ? "multipart/form-data" : "application/json; charset=UTF-8",
+      "Accept": isUpload ? "multipart/form-data" : "application/json; charset=UTF-8",
     };
 
     final token = await AppStorage.$read(key: StorageKey.accessToken) ?? "";
@@ -71,8 +68,7 @@ class ApiService {
 
   static Future<String?> get(String api, Map<String, dynamic> params) async {
     try {
-      final response =
-          await (await initDio()).get<dynamic>(api, queryParameters: params);
+      final response = await (await initDio()).get<dynamic>(api, queryParameters: params);
       return jsonEncode(response.data);
     } on TimeoutException catch (_) {
       l.e("The connection has timed out, Please try again!");
@@ -86,11 +82,9 @@ class ApiService {
     }
   }
 
-  static Future<String?> post(String api, Map<String, dynamic> data,
-      [Map<String, dynamic> params = const <String, dynamic>{}]) async {
+  static Future<String?> post(String api, Map<String, dynamic> data, [Map<String, dynamic> params = const <String, dynamic>{}]) async {
     try {
-      final response = await (await initDio())
-          .post<dynamic>(api, data: data, queryParameters: params);
+      final response = await (await initDio()).post<dynamic>(api, data: data, queryParameters: params);
       return jsonEncode(response.data);
     } on TimeoutException catch (_) {
       l.e("The connection has timed out, Please try again!");
@@ -162,13 +156,27 @@ class ApiService {
     }
   }
 
+  static Future<String?> patch(String api, Map<String, dynamic> data) async {
+    try {
+      final response = await (await initDio()).patch<dynamic>(api, data: data);
+      return jsonEncode(response.data);
+    } on TimeoutException catch (_) {
+      l.e("The connection has timed out, Please try again!");
+      rethrow;
+    } on DioException catch (e) {
+      l.e(e.response.toString());
+      rethrow;
+    } on Object catch (_) {
+      rethrow;
+    }
+  }
+
   static Future<String?> putAccount(
     String api,
     Map<String, dynamic> params,
   ) async {
     try {
-      final response =
-          await (await initDio()).put<dynamic>(api, queryParameters: params);
+      final response = await (await initDio()).put<dynamic>(api, queryParameters: params);
 
       return jsonEncode(response.data);
     } on TimeoutException catch (_) {
@@ -184,8 +192,7 @@ class ApiService {
 
   static Future<String?> delete(String api, Map<String, dynamic> params) async {
     try {
-      final _ =
-          await (await initDio()).delete<dynamic>(api, queryParameters: params);
+      final _ = await (await initDio()).delete<dynamic>(api, queryParameters: params);
       return "success";
     } on TimeoutException catch (_) {
       l.e("The connection has timed out, Please try again!");
@@ -200,14 +207,11 @@ class ApiService {
 }
 
 extension ListFileToFormData on List<File> {
-  Future<FormData> mappedFormData({required bool isPickedFile}) async =>
-      FormData.fromMap(
+  Future<FormData> mappedFormData({required bool isPickedFile}) async => FormData.fromMap(
         <String, MultipartFile>{
           for (var v in this) ...{
             DateTime.now().toString(): MultipartFile.fromBytes(
-              isPickedFile
-                  ? v.readAsBytesSync()
-                  : (await rootBundle.load(v.path)).buffer.asUint8List(),
+              isPickedFile ? v.readAsBytesSync() : (await rootBundle.load(v.path)).buffer.asUint8List(),
               filename: v.path.substring(v.path.lastIndexOf("/")),
             ),
           },

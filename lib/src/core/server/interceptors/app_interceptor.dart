@@ -9,7 +9,8 @@ class AppInterceptor extends Interceptor {
   static final AppInterceptor instance = AppInterceptor._();
 
   @override
-  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  Future<void> onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     if (kDebugMode) {
       log(
         "---------[Interceptor]---------ON_REQUEST(${options.method})------------------\n\n"
@@ -23,7 +24,8 @@ class AppInterceptor extends Interceptor {
   }
 
   @override
-  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
+  void onResponse(
+      Response<dynamic> response, ResponseInterceptorHandler handler) {
     if (kDebugMode) {
       log(
         "---------[Interceptor]---------ON_RESPONSE(${response.statusCode})------------------\n\n"
@@ -36,7 +38,8 @@ class AppInterceptor extends Interceptor {
   }
 
   @override
-  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(
+      DioException err, ErrorInterceptorHandler handler) async {
     if (kDebugMode) {
       log(
         "---------[Interceptor]---------ON_ERROR(${err.response?.statusCode})------------------\n\n"
@@ -48,5 +51,4 @@ class AppInterceptor extends Interceptor {
       );
     }
   }
-
 }

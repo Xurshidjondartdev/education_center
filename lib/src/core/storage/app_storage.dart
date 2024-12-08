@@ -1,6 +1,6 @@
 import "package:flutter_secure_storage/flutter_secure_storage.dart";
 
-enum StorageKey { token, accessToken }
+enum StorageKey { token, accessToken, role, jwtToken }
 
 class AppStorage extends FlutterSecureStorage {
   factory AppStorage() => _service;
