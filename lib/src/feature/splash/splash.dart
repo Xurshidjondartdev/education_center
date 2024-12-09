@@ -1,7 +1,9 @@
+import "dart:developer";
+
+import "package:education_center/src/core/routes/router_config.dart";
 import "package:education_center/src/core/storage/app_storage.dart";
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
-import "package:go_router/go_router.dart";
 import "package:lottie/lottie.dart";
 import "../../core/routes/app_route_names.dart";
 import "../../core/style/app_colors.dart";
@@ -19,34 +21,57 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    super.initState();
+
+    // Animationni boshlash
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 4),
     );
-    _animation = Tween(end: 0.80, begin: 0.1).animate(_controller);
+    _animation = Tween(begin: 0.1, end: 0.80).animate(_controller);
     _controller.forward();
 
-    // `stack` funksiyasini xavfsiz tarzda chaqirish
+    // Stack funksiyasini xavfsiz tarzda chaqirish
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      stack();
+      _initializePage();
     });
-
-    super.initState();
   }
 
-  Future<void> stack() async {
+  Future<void> _initializePage() async {
+    // 3 soniya kutish (Splash ekranida animatsiya uchun)
     await Future.delayed(const Duration(seconds: 3));
-    String? token = await AppStorage.$read(key: StorageKey.token);
 
-    // Tokenni tekshirish va navigatsiya qilish
-    if (token == null) {
-      if (mounted) {
-        context.go(AppRouteNames.login);
+    // Token va rolni tekshirish
+    await _checkUserStatus();
+  }
+
+  Future<void> _checkUserStatus() async {
+    // JWT token va rolni o'qish
+    String? token = await AppStorage.$read(key: StorageKey.jwtToken);
+    String? role = await AppStorage.$read(key: StorageKey.role);
+
+    // Tokenni tekshirish
+    if (token != null) {
+      // Role tekshiriladi
+      switch (role) {
+        case "ROLE_ADMIN":
+          RouterConfigService.router.go(AppRouteNames.admin);
+          log("Admin sahifasiga yo'naltirildi: {token: $token}");
+          break;
+        case "ROLE_USER":
+          RouterConfigService.router.go(AppRouteNames.teacherGroupPage);
+          log("Teacher sahifasiga yo'naltirildi: {role: $role}");
+          break;
+        default:
+          // Noma'lum rol holati, login sahifasiga yo'naltirish
+          log("Noma'lum rol: {role: $role}");
+          RouterConfigService.router.go(AppRouteNames.login);
+          break;
       }
     } else {
-      if (mounted) {
-        context.go(AppRouteNames.admin);
-      }
+      // Token mavjud emas, login sahifasiga yo'naltirish
+      RouterConfigService.router.go(AppRouteNames.login);
+      log("Token mavjud emas: {token: $token}");
     }
   }
 

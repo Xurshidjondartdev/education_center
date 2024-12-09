@@ -51,12 +51,9 @@ class LoginPage extends ConsumerWidget {
                     phone: authvm.loginC.text.trim(),
                     password: authvm.passwordC.text.trim(),
                   );
-
                   if (result == true) {
-                    log("Snake bar: true");
                     RouterConfigService.router.go(AppRouteNames.admin);
                   } else if (result == false) {
-                    log("Snake bar: false");
                     RouterConfigService.router
                         .go(AppRouteNames.teacherGroupPage);
                   } else {
