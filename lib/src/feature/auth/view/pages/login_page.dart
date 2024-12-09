@@ -1,9 +1,13 @@
+import 'dart:developer';
+
+import 'package:education_center/src/core/routes/app_route_names.dart';
 import 'package:education_center/src/core/widgets/main_button.dart';
 import 'package:education_center/src/feature/auth/view/widgets/login_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart'; // Lottie paketini import qiling
+import '../../../../core/routes/router_config.dart';
 import '../../vm/auth_vm.dart';
 
 final authVm = ChangeNotifierProvider.autoDispose<AuthVM>((ref) {
@@ -41,8 +45,32 @@ class LoginPage extends ConsumerWidget {
               const Spacer(),
               MainButton(
                 text: "Continue",
-                onTap: () async {},
-              ),
+                onTap: () async {
+                  final result = await authvm.login(
+                    context: context,
+                    phone: authvm.loginC.text.trim(),
+                    password: authvm.passwordC.text.trim(),
+                  );
+
+                  if (result == true) {
+                    log("Snake bar: true");
+                    RouterConfigService.router.go(AppRouteNames.admin);
+                  } else if (result == false) {
+                    log("Snake bar: false");
+                    RouterConfigService.router
+                        .go(AppRouteNames.teacherGroupPage);
+                  } else {
+                    log("Snake bar: null");
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Xatolik: foydalanuvchi topilmadi!"),
+                        ),
+                      );
+                    }
+                  }
+                },
+              )
             ],
           ),
         ),
