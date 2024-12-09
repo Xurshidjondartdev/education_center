@@ -41,12 +41,7 @@ class LoginPage extends ConsumerWidget {
               const Spacer(),
               MainButton(
                 text: "Continue",
-                onTap: () async {
-                  authvm.login(
-                    authvm.passwordC.text.trim(),
-                    authvm.passwordC.text.trim(),
-                  );
-                },
+                onTap: () async {},
               ),
             ],
           ),
