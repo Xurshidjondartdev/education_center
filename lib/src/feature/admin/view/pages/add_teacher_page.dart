@@ -16,6 +16,7 @@ class AddTeacherPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final vm = ref.watch(adminVM);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const CustomAppBarWidget(title: "Add new teacher", canPop: true),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -28,13 +29,31 @@ class AddTeacherPage extends ConsumerWidget {
               ),
               SizedBox(height: 20.h),
               LoginInputWidget(
-                hintText: "Teacher's last name",
+                hintText: "Teacher's surname",
                 textEditingController: vm.addTeacherLastNameC,
               ),
               SizedBox(height: 20.h),
               LoginInputWidget(
                 hintText: "What subject does he teach?",
                 textEditingController: vm.addTeacherSubjectC,
+              ),
+              SizedBox(height: 20.h),
+              LoginInputWidget(
+                keyboardType: TextInputType.phone,
+                hintText: "Phone number",
+                textEditingController: vm.addTeacherPhoneNum,
+              ),
+              SizedBox(height: 20.h),
+              LoginInputWidget(
+                hintText: "Enter password",
+                textEditingController: vm.addTeacherPassword,
+                isPassword: true,
+              ),
+              SizedBox(height: 20.h),
+              LoginInputWidget(
+                hintText: "Enter confirm password",
+                textEditingController: vm.addTeacherConfirmPass,
+                isPassword: true,
               ),
               const Spacer(),
               MainButton(

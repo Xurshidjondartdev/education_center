@@ -9,6 +9,10 @@ class AdminVM extends ChangeNotifier {
   TextEditingController addTeacherNameC = TextEditingController();
   TextEditingController addTeacherLastNameC = TextEditingController();
   TextEditingController addTeacherSubjectC = TextEditingController();
+  TextEditingController addTeacherPassword = TextEditingController();
+  TextEditingController addTeacherConfirmPass = TextEditingController();
+  TextEditingController addTeacherPhoneNum = TextEditingController();
+
 
 
   final List<Map<String, String>> groups = [
