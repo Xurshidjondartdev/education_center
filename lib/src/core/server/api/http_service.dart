@@ -13,6 +13,7 @@ class Api {
   // API yo‘llarini to‘g‘ri formatlash
   static const String apiLogin = "/auth/login";
   static const String apiCreateTeacher = "/admin/create";
+  static const String apiGetTeacher = "/admin/list";
 
   // headers
   static Map<String, String> headers = {
@@ -37,7 +38,7 @@ class Api {
   // GET method
   static Future<String?> get(
       {required String api, Map<String, String>? params}) async {
-    final Uri url = Uri.http(baseURl, api, params);
+    final Uri url = Uri.parse("$baseURl$api");
     log("URL: $url");
     final http.Response response = await client.get(url, headers: headers);
     return handleResponse(response);

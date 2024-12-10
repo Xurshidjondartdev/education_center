@@ -7,4 +7,6 @@ abstract class AppRepo {
     required String phone,
     required String password,
   });
+
+  Future<String?> getTeacher();
 }

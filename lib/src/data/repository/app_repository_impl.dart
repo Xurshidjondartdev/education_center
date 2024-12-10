@@ -25,7 +25,7 @@ class AppRepositoryImpl implements AppRepo {
     required String phone,
     required String password,
   }) async {
-    final result = await Api.post(api: Api.apiCreateTeacher,body: {
+    final result = await Api.post(api: Api.apiCreateTeacher, body: {
       "name": name,
       "surname": surname,
       "phone": phone,
@@ -33,6 +33,16 @@ class AppRepositoryImpl implements AppRepo {
       "role": "ROLE_USER",
     });
     log("create teacher impl");
+    if (result != null) {
+      return result;
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<String?> getTeacher() async {
+    final result = await Api.get(api: Api.apiGetTeacher);
     if (result != null) {
       return result;
     } else {

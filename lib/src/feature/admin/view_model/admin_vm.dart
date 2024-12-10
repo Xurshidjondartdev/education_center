@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:education_center/src/data/model/create_model.dart';
+import 'package:education_center/src/data/model/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,6 +27,35 @@ class AdminVM extends ChangeNotifier {
   TextEditingController timeGroupC = TextEditingController();
 
   bool isLoading = false;
+  List<LoginModel> users = [];
+
+  Future<void> getTeacher() async {
+    try {
+      isLoading = true;
+      notifyListeners();
+
+      final result = await AppRepositoryImpl().getTeacher();
+      if (result != null) {
+        final parsedResult = jsonDecode(result);
+        if (parsedResult is List) {
+          final loginModelList = parsedResult
+              .map((teacher) => LoginModel.fromJson(teacher))
+              .toList();
+          users = loginModelList;
+        } else {
+          log("Error: Serverdan kutilgan ro'yxat emas, boshqa format keldi.");
+          users = [];
+        }
+      } else {
+        users = [];
+      }
+    } catch (e) {
+      log("Error 1: $e");
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
 
   Future<bool> crateTeacher({
     required String name,
@@ -83,29 +114,6 @@ class AdminVM extends ChangeNotifier {
     {
       'name': 'Political',
       'position': 'Full time',
-    },
-  ];
-
-  final List<Map<String, String>> users = [
-    {
-      'name': 'John Nick',
-      'position': 'Biology Teacher',
-    },
-    {
-      'name': 'Jane Doe',
-      'position': 'Chemistry Teacher',
-    },
-    {
-      'name': 'Alice Mouse',
-      'position': 'Physics Teacher',
-    },
-    {
-      'name': 'Bob Chan',
-      'position': 'Mathematics Teacher',
-    },
-    {
-      'name': 'Charlie Chan',
-      'position': 'English Teacher',
     },
   ];
 }

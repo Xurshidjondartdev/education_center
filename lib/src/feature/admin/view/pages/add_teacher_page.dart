@@ -67,6 +67,7 @@ class AddTeacherPage extends ConsumerWidget {
                     password: vm.addTeacherPassword.text.trim(),
                   );
                   if (success) {
+                    vm.getTeacher();
                     RouterConfigService.router.go(AppRouteNames.admin);
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
