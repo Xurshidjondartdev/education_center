@@ -1,5 +1,6 @@
 import "dart:convert";
 import "dart:developer";
+import "package:education_center/setup.dart";
 import "package:education_center/src/core/server/api/http_interceptor.dart";
 import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
@@ -11,10 +12,12 @@ class Api {
 
   // API yo‘llarini to‘g‘ri formatlash
   static const String apiLogin = "/auth/login";
+  static const String apiCreateTeacher = "/admin/create";
 
   // headers
   static Map<String, String> headers = {
     "Content-Type": "application/json",
+    "Authorization": "Bearer $jwtToken"
   };
 
   // Intercepted client

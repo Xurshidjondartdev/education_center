@@ -1,12 +1,11 @@
 import 'dart:developer';
-
 import 'package:education_center/src/core/storage/app_storage.dart';
 import 'package:education_center/src/data/model/login_model.dart';
 import 'package:education_center/src/data/repository/app_repository_impl.dart';
 import 'package:flutter/material.dart';
 
 class AuthVM extends ChangeNotifier {
-  TextEditingController loginC = TextEditingController();
+  TextEditingController loginC = TextEditingController(text: "+998");
   TextEditingController passwordC = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
@@ -23,8 +22,6 @@ class AuthVM extends ChangeNotifier {
     if (result != null) {
       final loginModel = loginModelFromJson(result);
       await AppStorage.$write(key: StorageKey.jwtToken, value: loginModel.jwt!);
-      String? jwtT = await AppStorage.$read(key: StorageKey.jwtToken);
-      log("jwt = $jwtT");
       await AppStorage.$write(key: StorageKey.role, value: loginModel.role!);
       if (loginModel.role == "ROLE_ADMIN") {
         log("Admin");

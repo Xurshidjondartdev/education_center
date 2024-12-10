@@ -30,7 +30,7 @@ class AddTeacherPage extends ConsumerWidget {
               SizedBox(height: 20.h),
               LoginInputWidget(
                 hintText: "Teacher's surname",
-                textEditingController: vm.addTeacherLastNameC,
+                textEditingController: vm.addTeacherSurnameC,
               ),
               SizedBox(height: 20.h),
               LoginInputWidget(
@@ -58,10 +58,34 @@ class AddTeacherPage extends ConsumerWidget {
               const Spacer(),
               MainButton(
                 text: "Add teacher",
-                onTap: () {
-                  RouterConfigService.router.go(AppRouteNames.admin);
+                isLoading: vm.isLoading,
+                onTap: () async {
+                  final success = await vm.crateTeacher(
+                    name: vm.addTeacherNameC.text.trim(),
+                    surname: vm.addTeacherSurnameC.text.trim(),
+                    phone: vm.addTeacherPhoneNum.text.trim(),
+                    password: vm.addTeacherPassword.text.trim(),
+                  );
+                  if (success) {
+                    RouterConfigService.router.go(AppRouteNames.admin);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Success"),
+                        ),
+                      );
+                    }
+                  } else {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Feild"),
+                        ),
+                      );
+                    }
+                  }
                 },
-              )
+              ),
             ],
           ),
         ),

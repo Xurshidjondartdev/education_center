@@ -31,7 +31,7 @@ class AddGroupsPage extends ConsumerWidget {
               SizedBox(height: 20.h),
               LoginInputWidget(
                 hintText: "time",
-                textEditingController: groupVm.addTeacherLastNameC,
+                textEditingController: groupVm.timeGroupC,
               ),
               SizedBox(height: 20.h),
               LoginInputWidget(
